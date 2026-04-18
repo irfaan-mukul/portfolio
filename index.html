@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irfaan Mukul — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --bg-warm: #f4f1ec;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #8a8a8a;
+    --accent: #c45d3e;
+    --accent-light: #e8734f;
+    --accent-bg: #fdf0ec;
+    --navy: #0f2b3c;
+    --navy-light: #1a3d52;
+    --border: #e5e0d8;
+    --tag-bg: #f0ece6;
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ─────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── Hero ────────────────────────────────────────── */
+  .hero {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 160px 32px 100px;
+  }
+
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 6vw, 64px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-text {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+  }
+
+  .hero-cta:hover { background: var(--navy-light); transform: translateY(-1px); }
+
+  /* ── Divider ─────────────────────────────────────── */
+  .divider {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .divider hr {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── About ───────────────────────────────────────── */
+  .about {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .about h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .about-text {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 620px;
+    margin-bottom: 32px;
+  }
+
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    background: var(--tag-bg);
+    color: var(--text-mid);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── Projects ────────────────────────────────────── */
+  .projects {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .projects h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 40px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+
+  .project-card:hover {
+    border-color: #ccc;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+
+  .project-hero {
+    background: var(--navy);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(196,93,62,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .project-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .project-badge .live-dot {
+    width: 6px;
+    height: 6px;
+    background: #00c48c;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .project-hero h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: white;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-body {
+    padding: 32px 40px;
+  }
+
+  .project-section {
+    margin-bottom: 24px;
+  }
+
+  .project-section:last-child { margin-bottom: 0; }
+
+  .project-section h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+
+  .project-section p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tech-tag {
+    background: var(--bg-warm);
+    color: var(--text-mid);
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 12px;
+    padding: 20px 40px 32px;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+
+  .project-link.primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .project-link.primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .project-link.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+  }
+
+  .project-link.secondary:hover { border-color: var(--text-light); color: var(--text); }
+
+  /* ── Contact ─────────────────────────────────────── */
+  .contact {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .contact h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .contact p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 500px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Footer ──────────────────────────────────────── */
+  footer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 120px 20px 60px; }
+    .about, .projects, .contact { padding: 60px 20px; }
+    .project-hero, .project-body, .project-links { padding-left: 24px; padding-right: 24px; }
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    .skills-row { gap: 6px; }
+    .project-links { flex-direction: column; }
+    .contact-links { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Irfaan Mukul</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-label">Portfolio</div>
+  <h1>Building <em>AI-powered solutions</em> for freight forwarding and logistics</h1>
+  <p class="hero-text">
+    I design and build AI tools that streamline freight forwarding operations — automating compliance checks, optimizing workflows, and turning complex logistics data into clear, actionable intelligence.
+  </p>
+  <a href="#projects" class="hero-cta">View My Work ↓</a>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="about" id="about">
+  <div class="section-label">About</div>
+  <h2>Who I am</h2>
+  <p class="about-text">
+    I'm a problem solver with an engineering background working at the intersection of AI and logistics. I build tools that address real operational pain points in freight forwarding — customs compliance, document processing, shipment visibility, and workflow automation. My approach is practical: identify a real problem, build a working solution, and deploy it.
+  </p>
+  <div class="skills-row">
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">AI Agents</span>
+    <span class="skill-tag">Claude API</span>
+    <span class="skill-tag">Flask</span>
+    <span class="skill-tag">Web Development</span>
+    <span class="skill-tag">Data Analytics</span>
+    <span class="skill-tag">Freight Forwarding</span>
+    <span class="skill-tag">Customs Compliance</span>
+    <span class="skill-tag">Process Automation</span>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="projects" id="projects">
+  <div class="section-label">Projects</div>
+  <h2>What I've built</h2>
+
+  <!-- ClearDoc -->
+  <div class="project-card">
+    <div class="project-hero">
+      <div class="project-badge"><span class="live-dot"></span> Live</div>
+      <h3>ClearDoc</h3>
+      <p>AI-powered customs compliance checker for shipping documents. Upload a commercial invoice, bill of lading, or packing list and get an instant compliance report with flagged issues and recommended fixes.</p>
+    </div>
+    <div class="project-body">
+      <div class="project-section">
+        <h4>The Problem</h4>
+        <p>Customs document errors are one of the most common causes of shipment delays in freight forwarding. A single incorrect HTS code, missing country of origin, or weight discrepancy can hold a shipment for days and cost thousands in fines. Most errors are caught at the border — after it's already too late.</p>
+      </div>
+      <div class="project-section">
+        <h4>The Solution</h4>
+        <p>ClearDoc reviews documents before submission using AI that understands customs compliance requirements. It checks for invalid HTS codes, weight mismatches, currency inconsistencies, missing fields, address errors, and Incoterms conflicts — then produces a color-coded report with specific fix recommendations for each issue found.</p>
+      </div>
+      <div class="project-section">
+        <h4>Built With</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">HTML / CSS / JS</span>
+          <span class="tech-tag">Render</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-links">
+      <a href="https://cleardoc.onrender.com" target="_blank" class="project-link primary">
+        🔗 Try It Live
+      </a>
+      <a href="https://github.com/irfaan-mukul/cleardoc" target="_blank" class="project-link secondary">
+        📂 View Source Code
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ADD NEW PROJECT CARDS HERE
+       Copy the block below and paste it above this comment.
+       Update the name, description, tech tags, and links.
+  ═══════════════════════════════════════════════════════════════
+
+  <div class="project-card">
+    <div class="project-hero">
+      <div class="project-badge"><span class="live-dot"></span> Live</div>
+      <h3>PROJECT NAME</h3>
+      <p>One sentence description of what the project does and who it helps.</p>
+    </div>
+    <div class="project-body">
+      <div class="project-section">
+        <h4>The Problem</h4>
+        <p>What pain point does this solve?</p>
+      </div>
+      <div class="project-section">
+        <h4>The Solution</h4>
+        <p>How does your tool solve it?</p>
+      </div>
+      <div class="project-section">
+        <h4>Built With</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Claude API</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-links">
+      <a href="https://YOUR-LIVE-URL.com" target="_blank" class="project-link primary">🔗 Try It Live</a>
+      <a href="https://github.com/irfaan-mukul/YOUR-REPO" target="_blank" class="project-link secondary">📂 View Source Code</a>
+    </div>
+  </div>
+
+  ═══════════════════════════════════════════════════════════════ -->
+
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="contact" id="contact">
+  <div class="section-label">Contact</div>
+  <h2>Let's connect</h2>
+  <p>I'm looking for opportunities in data analytics and AI within the freight forwarding and logistics industry. Open to full-time roles and freelance projects.</p>
+  <div class="contact-links">
+    <a href="mailto:irfaanmukul@gmail.com" class="contact-link">✉️ irfaanmukul@gmail.com</a>
+    <a href="https://github.com/irfaan-mukul" target="_blank" class="contact-link">🐙 GitHub</a>
+    <a href="https://linkedin.com/in/irfaanmukul" target="_blank" class="contact-link">💼 LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Irfaan Mukul. Built with purpose.
+</footer>
+
+</body>
+</html>
